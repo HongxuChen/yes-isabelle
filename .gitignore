@@ -1,1 +1,5 @@
 *~
+*.scala
+*.ocaml
+*.hs
+*.sml

@@ -1,4 +1,4 @@
-theory tutorial
+theory prog_prov
 imports Main
 begin
 
@@ -113,5 +113,13 @@ lemma "\<lbrakk> (a::nat)\<le>x+b; 2*x < c\<rbrakk> \<Longrightarrow> 2*a +1 \<l
 inductive ev :: "nat\<Rightarrow>bool" where 
   ev0 : "ev 0"
   | evSS : "ev n \<Longrightarrow> ev (n+2)"
+
+datatype 'a queue = AQueue "'a list" "'a list"
+  
+definition empty:: "'a queue" where
+  "empty = AQueue [] []"
+    
+export_code empty in OCaml
+  module_name tutorial file "tutorial.ocaml"
 
 end
