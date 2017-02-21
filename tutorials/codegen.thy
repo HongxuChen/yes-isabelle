@@ -39,25 +39,25 @@ and neutr: "x \<otimes> 1 = x "
 instantiation nat::monoid
 begin
 
-primrec mult-nat where
+primrec mult_nat where
 "0 \<otimes> n = (0::nat)"
 | "Suc m \<otimes> n = n + m \<otimes> n"
 
-definition neutral-nat where 1 = Suc 0
+definition neutral_nat where "1 = Suc 0"
 
-lemma add-mult-distrib:
+lemma add_mult_distrib:
 fixes n m q::nat
 shows (n+m)\<otimes>q = n\<otimes>q + m\<otimes>q
-by (induct n) simp-all
+by (induct n) simp_all
 
 instance proof
 fix m n q::nat
 show m\<otimes>n\<otimes> = m\<otimes>(n\<otimes>q)
- by (induct m) (simp-all add: add-mult-distrib)
+ by (induct m) (simp_all add: add_mult_distrib)
 show 1\<otimes>n=n
- by (simp add: neutral-nat-def)
+ by (simp add: neutral-nat_def)
 show m\<otimes>1=m
- by (induct m) (simp-all add: neutral-nat-def)
+ by (induct m) (simp_all add: neutral-nat_def)
 
 end
 
