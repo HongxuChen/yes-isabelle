@@ -1,4 +1,5 @@
 session "tutorials" = "HOL" +
   options [document = true]
   theories
-    prog_prov
+    prog_prov_ch02
+    prog_prov_ch03
