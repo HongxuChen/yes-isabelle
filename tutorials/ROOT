@@ -5,3 +5,6 @@ session "tutorials" = "HOL" +
     prog_prov_ch03
     prog_prov_ch04
     locales
+    classes
+    datatypes_
+    functions_

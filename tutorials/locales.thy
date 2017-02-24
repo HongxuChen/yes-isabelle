@@ -30,10 +30,10 @@ begin
   is_sup where "is_sup x y s = (x\<sqsubseteq>s \<and> y\<sqsubseteq>s \<and> (\<forall> z. x\<sqsubseteq>z \<and> y\<sqsubseteq>z \<longrightarrow> s\<sqsubseteq>z))"
 
   theorem is_inf_uniq: "\<lbrakk>is_inf x y i; is_inf x y i'\<rbrakk> \<Longrightarrow> i=i'"
-  sorry
+  by (simp add: anti_sym is_inf_def)
 
   theorem is_sup_uniq: "\<lbrakk>is_sup x y s; is_sup x y s'\<rbrakk> \<Longrightarrow> s=s'"
-  sorry
+  by (simp add: anti_sym is_sup_def)
 
 end
 
@@ -48,10 +48,10 @@ begin
   join (infixl "\<squnion>" 65) where "x\<squnion>y = (THE sup. is_sup x y sup)"
 
   lemma meet_left: "x\<sqinter>y\<sqsubseteq>x"
-  sorry
+  by (metis is_inf_def is_inf_uniq lattice.ex_inf local.lattice_axioms meet_def the_equality)
 
   lemma join_right: "x\<sqsubseteq>(x\<squnion>y)"
-  sorry
+  by (metis ex_sup is_sup_def is_sup_uniq join_def the_equality)
 
 end
 
@@ -59,7 +59,7 @@ locale total_order = partial_order +
   assumes total: "x\<sqsubseteq>y \<or> y\<sqsubseteq>x"
 
 lemma (in total_order) less_order: "x\<sqsubset>y \<or> y\<sqsubset>x \<or> x=y"
-sorry
+  using less_def total by auto
 
 locale distrib_lattice = lattice +
   assumes meet_distr: "x\<sqinter>(y\<squnion>z) = (x\<sqinter>y)\<squnion>(x\<sqinter>z)"
